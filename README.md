@@ -310,16 +310,6 @@ Pin PagePal to Chrome's side panel for persistent access:
 2. Right-click → **"Pin to Side Panel"**
 3. Access PagePal without opening popup
 
-### Reset Quotas (for testing)
-
-If you're testing the extension:
-1. Open PagePal → Settings (⚙️)
-2. Scroll to **"🛠️ כלי Debug"** (Debug Tools)
-3. Click **"איפוס מכסות"** (Reset Quotas)
-4. All quotas reset to maximum
-
-**Note:** This is for testing purposes only. Daily quotas reset automatically at midnight.
-
 ---
 
 ## 🐛 Troubleshooting
@@ -381,7 +371,6 @@ pagepal/
 ├── content.js             # Content script (page text extraction)
 ├── sidepanel.html         # Side panel view
 ├── modal.css              # Modal styling
-├── reset-quotas.js        # Quota reset utility
 ├── icons/                 # Extension icons (16, 32, 48, 128)
 └── README.md              # This file
 ```
@@ -478,7 +467,6 @@ For licensing inquiries: gabaygabaymaor123@gmail.com
 - ✅ Freemium quota system (5 chat/day, 3 premium/day)
 - ✅ Quota countdown timer
 - ✅ Browser fingerprinting for quota enforcement
-- ✅ Reset quotas utility for testing
 - ✅ Security enhancements (A- rating)
 - ✅ UI improvements with quota indicators
 
