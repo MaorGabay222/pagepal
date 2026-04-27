@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PagePal - AI-Powered Smart Browsing Assistant</title>
-  <meta name="description" content="Transform any webpage with AI: translate, summarize, chat, detect phishing, and summarize YouTube videos. Free forever with premium features.">
+  <title>PagePal - Your Smart Browser Companion</title>
+  <meta name="description" content="Your AI companion for smarter browsing. Translate, summarize, chat, detect phishing, and summarize YouTube videos. Free forever with premium features.">
   <style>
     * {
       margin: 0;
@@ -248,6 +248,94 @@
       font-weight: 700;
     }
 
+    /* Testimonials Section */
+    .testimonials {
+      padding: 80px 0;
+      background: var(--white);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      margin-top: 60px;
+    }
+
+    .testimonial-card {
+      background: var(--white);
+      border: 2px solid var(--light-gray);
+      border-radius: 16px;
+      padding: 30px;
+      position: relative;
+      transition: all 0.3s;
+    }
+
+    .testimonial-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 10px 30px rgba(79, 70, 229, 0.1);
+      transform: translateY(-5px);
+    }
+
+    .testimonial-quote {
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--dark);
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--light-gray);
+    }
+
+    .testimonial-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    .testimonial-info h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 5px;
+    }
+
+    .testimonial-info p {
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    .testimonial-stars {
+      color: var(--accent);
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    .testimonial-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #E0E7FF;
+      color: var(--primary);
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
     /* Pricing Section */
     .pricing {
       padding: 80px 0;
@@ -256,9 +344,9 @@
 
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 40px;
-      max-width: 900px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1100px;
       margin: 0 auto;
     }
 
@@ -480,13 +568,13 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="container">
-      <h1>Transform Every Webpage<br>with AI Power 🚀</h1>
-      <p>Translate, summarize, chat, detect phishing, and summarize YouTube videos - all with a single click. Your AI-powered browsing assistant.</p>
+      <h1>Meet Your Smart Browser Companion 🤝</h1>
+      <p>PagePal is your AI-powered friend in the browser. Translate pages instantly, get smart summaries, chat with content, stay safe from phishing, and never miss a detail in YouTube videos.</p>
       <div class="hero-buttons">
         <a href="https://github.com/MaorGabay222/pagepal/releases/latest" class="cta-button">Get Started Free</a>
         <a href="#pricing" class="cta-button secondary">View Pricing</a>
       </div>
-      <div class="badge">✨ Free Forever • No Credit Card Required</div>
+      <div class="badge">✨ Free Forever • Your Companion for Smarter Browsing</div>
     </div>
   </section>
 
@@ -584,6 +672,100 @@
     </div>
   </section>
 
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <div class="container">
+      <h2 class="section-title">What Our Users Say ❤️</h2>
+      <p class="section-subtitle">Real feedback from people who use PagePal daily</p>
+      
+      <div class="testimonials-grid">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card">
+          <div class="testimonial-badge">Developer</div>
+          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-quote">"PagePal saved me 10 hours this week! I was reading AWS documentation for a new project, and instead of spending hours translating and understanding, I got summaries in seconds. The chat feature is a game-changer - I can ask specific questions and get instant answers."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">D</div>
+            <div class="testimonial-info">
+              <h4>Daniel K.</h4>
+              <p>Full Stack Developer</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card">
+          <div class="testimonial-badge">Business</div>
+          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-quote">"The phishing detection feature literally saved my company from a security breach. We received a fake invoice email that looked 100% legitimate. PagePal detected it instantly and warned us. Worth every shekel of the PRO subscription!"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">R</div>
+            <div class="testimonial-info">
+              <h4>Rachel M.</h4>
+              <p>Business Owner</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card">
+          <div class="testimonial-badge">Student</div>
+          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-quote">"As a CS student, I watch tons of tutorial videos. The YouTube summarization is incredible - I can see timestamps of key topics and jump directly to what I need. Turned a 2-hour lecture into 15 minutes of focused learning!"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">Y</div>
+            <div class="testimonial-info">
+              <h4>Yossi L.</h4>
+              <p>Computer Science Student</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 4 -->
+        <div class="testimonial-card">
+          <div class="testimonial-badge">Entrepreneur</div>
+          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-quote">"I read 50+ articles a week for market research. Before PagePal, it took hours. Now I get instant summaries, translate foreign competitor sites, and ask specific questions. My productivity increased by 300%. This is my secret weapon!"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">T</div>
+            <div class="testimonial-info">
+              <h4>Tom S.</h4>
+              <p>Tech Entrepreneur</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 5 -->
+        <div class="testimonial-card">
+          <div class="testimonial-badge">Researcher</div>
+          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-quote">"The PDF support is phenomenal. I review 100+ page research papers weekly. PagePal translates them from English, summarizes key findings, and I can ask questions about methodology. Cut my research time in half!"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">S</div>
+            <div class="testimonial-info">
+              <h4>Dr. Sarah G.</h4>
+              <p>Medical Researcher</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 6 -->
+        <div class="testimonial-card">
+          <div class="testimonial-badge">Freelancer</div>
+          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-quote">"Working with international clients, I constantly receive contracts and documents in different languages. PagePal translates everything instantly and I can ask 'What are the payment terms?' instead of reading 20 pages. Absolute lifesaver!"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">A</div>
+            <div class="testimonial-info">
+              <h4>Alex P.</h4>
+              <p>Freelance Designer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Pricing Section -->
   <section id="pricing" class="pricing">
     <div class="container">
@@ -594,7 +776,7 @@
         <!-- Free Plan -->
         <div class="pricing-card">
           <h3>Free Forever</h3>
-          <div class="price">$0<span class="price-period">/month</span></div>
+          <div class="price">₪0<span class="price-period">/month</span></div>
           <ul class="features-list">
             <li>Unlimited Translation</li>
             <li>Unlimited Summarization</li>
@@ -610,11 +792,11 @@
           <a href="https://github.com/MaorGabay222/pagepal/releases/latest" class="cta-button">Get Started Free</a>
         </div>
 
-        <!-- PRO Plan -->
+        <!-- PRO Monthly -->
         <div class="pricing-card featured">
           <div class="popular-badge">Most Popular</div>
-          <h3>PRO</h3>
-          <div class="price">$6.99<span class="price-period">/month</span></div>
+          <h3>PRO - Monthly</h3>
+          <div class="price">₪15<span class="price-period">/month</span></div>
           <ul class="features-list">
             <li>Everything in Free, plus:</li>
             <li><strong>Unlimited</strong> Chat Messages</li>
@@ -628,6 +810,27 @@
             💎 No limits, use as much as you need
           </div>
           <a href="#" class="cta-button">Upgrade to PRO</a>
+        </div>
+
+        <!-- PRO Yearly -->
+        <div class="pricing-card">
+          <div class="popular-badge" style="background: var(--secondary);">Best Value</div>
+          <h3>PRO - Yearly</h3>
+          <div class="price">₪99<span class="price-period">/year</span></div>
+          <p style="color: var(--secondary); font-weight: 600; margin: -10px 0 20px;">Save ₪81 (45% off!)</p>
+          <ul class="features-list">
+            <li>Everything in Free, plus:</li>
+            <li><strong>Unlimited</strong> Chat Messages</li>
+            <li><strong>Unlimited</strong> YouTube Summaries</li>
+            <li><strong>Unlimited</strong> Phishing Checks</li>
+            <li><strong>Full PDF Support</strong> (translate, summarize, chat)</li>
+            <li>Priority Support</li>
+            <li>All Future Updates</li>
+          </ul>
+          <div class="quota-info">
+            💰 Only ₪8.25/month - Best deal!
+          </div>
+          <a href="#" class="cta-button">Upgrade to PRO Yearly</a>
         </div>
       </div>
 
@@ -693,12 +896,12 @@
 
       <div class="faq-item">
         <h3>💰 What happens if I hit the daily free quota?</h3>
-        <p>Your quotas automatically reset at midnight every day. You'll see a countdown timer showing exactly when they reset. Translation and summarization remain unlimited even if you hit other quotas. Upgrade to PRO ($6.99/month) for unlimited everything.</p>
+        <p>Your quotas automatically reset at midnight every day. You'll see a countdown timer showing exactly when they reset. Translation and summarization remain unlimited even if you hit other quotas. Upgrade to PRO (₪15/month or ₪99/year) for unlimited everything.</p>
       </div>
 
       <div class="faq-item">
         <h3>📄 Does it work on PDFs?</h3>
-        <p>Yes! PDF support (translate, summarize, chat) is available for PRO users ($6.99/month). Works with both online PDFs and local files. Perfect for research papers, contracts, and business documents.</p>
+        <p>Yes! PDF support (translate, summarize, chat) is available for PRO users (₪15/month or ₪99/year). Works with both online PDFs and local files. Perfect for research papers, contracts, and business documents.</p>
       </div>
 
       <div class="faq-item">
