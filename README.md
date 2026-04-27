@@ -249,7 +249,7 @@ Summary:
 - **Phishing Detection:** 3 per day
 - **Quota Reset:** Daily at midnight 🕛
 
-### 🚀 PRO Tier 
+### 🚀 PRO Tier ($6.99/month)
 
 Everything in Free Tier, plus:
 - **Unlimited chat messages**
@@ -259,12 +259,13 @@ Everything in Free Tier, plus:
 - **Priority support**
 - **All future updates**
 
+[**Upgrade to PRO →**](https://lemonsqueezy.com)
 
 ---
 
 ## 🔒 Privacy & Security
 
-### 🛡️ Security Rating: A
+### 🛡️ Security Rating: A- (90/100)
 
 PagePal has undergone comprehensive security audits and follows industry best practices.
 
@@ -309,7 +310,15 @@ Pin PagePal to Chrome's side panel for persistent access:
 2. Right-click → **"Pin to Side Panel"**
 3. Access PagePal without opening popup
 
+### Reset Quotas (for testing)
 
+If you're testing the extension:
+1. Open PagePal → Settings (⚙️)
+2. Scroll to **"🛠️ כלי Debug"** (Debug Tools)
+3. Click **"איפוס מכסות"** (Reset Quotas)
+4. All quotas reset to maximum
+
+**Note:** This is for testing purposes only. Daily quotas reset automatically at midnight.
 
 ---
 
@@ -429,7 +438,7 @@ This is a proprietary project, but we welcome:
 
 - **Bug Reports:** [GitHub Issues](https://github.com/YOUR_USERNAME/pagepal/issues)
 - **Feature Requests:** [GitHub Discussions](https://github.com/YOUR_USERNAME/pagepal/discussions)
-- **Email Support:** support@pagepal.com (coming soon)
+- **Email Support:** gabaygabaymaor123@gmail.com
 
 ### For Developers
 
@@ -447,7 +456,7 @@ This software is provided for personal use only. You may install and use PagePal
 - Create derivative works
 - Use for commercial purposes without permission
 
-For licensing inquiries: license@pagepal.com
+For licensing inquiries: gabaygabaymaor123@gmail.com
 
 ---
 
