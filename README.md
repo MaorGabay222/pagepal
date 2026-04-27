@@ -249,7 +249,7 @@ Summary:
 - **Phishing Detection:** 3 per day
 - **Quota Reset:** Daily at midnight 🕛
 
-### 🚀 PRO Tier ($6.99/month)
+### 🚀 PRO Tier
 
 Everything in Free Tier, plus:
 - **Unlimited chat messages**
@@ -265,7 +265,7 @@ Everything in Free Tier, plus:
 
 ## 🔒 Privacy & Security
 
-### 🛡️ Security Rating: A- (90/100)
+### 🛡️ Security Rating: A
 
 PagePal has undergone comprehensive security audits and follows industry best practices.
 
