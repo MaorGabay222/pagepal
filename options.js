@@ -468,30 +468,4 @@ document.addEventListener("DOMContentLoaded", async () => {
     el.className = type;
     el.hidden = !message;
   }
-
-  // ─── Debug Tools ──────────────────────────────────────────────────────────
-
-  document.getElementById("reset-quotas-btn")?.addEventListener("click", async () => {
-    const confirmed = confirm(
-      "🔄 אפס מכסות?\n\n" +
-      "זה יאפס:\n" +
-      "• יוטיוב + פישינג: 3/3\n" +
-      "• שאל על העמוד (צ'אט): 5/5\n\n" +
-      "להמשיך?"
-    );
-    
-    if (!confirmed) return;
-    
-    try {
-      await chrome.storage.local.remove([
-        'freemiumPremiumUsage',
-        'freemiumChatDate', 
-        'freemiumChatCount'
-      ]);
-      
-      alert("✅ המכסות אופסו בהצלחה!\n\nעכשיו יש לך:\n• יוטיוב + פישינג: 3/3\n• צ'אט: 5/5");
-    } catch (error) {
-      alert("❌ שגיאה באיפוס המכסות: " + error.message);
-    }
-  });
 });
