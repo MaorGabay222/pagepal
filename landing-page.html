@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PagePal - AI-Powered Smart Browsing Assistant</title>
+  <meta name="description" content="Transform any webpage with AI: translate, summarize, chat, detect phishing, and summarize YouTube videos. Free forever with premium features.">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #4F46E5;
+      --primary-dark: #4338CA;
+      --secondary: #10B981;
+      --accent: #F59E0B;
+      --danger: #EF4444;
+      --dark: #1F2937;
+      --gray: #6B7280;
+      --light-gray: #F3F4F6;
+      --white: #FFFFFF;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: var(--dark);
+      background: var(--white);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+      background: var(--white);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .cta-button {
+      background: var(--primary);
+      color: var(--white);
+      padding: 12px 30px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+
+    .cta-button:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    }
+
+    .cta-button.secondary {
+      background: var(--white);
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    .cta-button.secondary:hover {
+      background: var(--light-gray);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: var(--white);
+      padding: 100px 0;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 56px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 22px;
+      margin-bottom: 40px;
+      opacity: 0.95;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      margin-top: 30px;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Features Section */
+    .features {
+      padding: 80px 0;
+      background: var(--white);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--dark);
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 20px;
+      color: var(--gray);
+      margin-bottom: 60px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+
+    .feature-card {
+      padding: 30px;
+      background: var(--white);
+      border: 2px solid var(--light-gray);
+      border-radius: 16px;
+      transition: all 0.3s;
+    }
+
+    .feature-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 10px 30px rgba(79, 70, 229, 0.1);
+      transform: translateY(-5px);
+    }
+
+    .feature-icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+
+    .feature-card p {
+      color: var(--gray);
+      line-height: 1.8;
+    }
+
+    .feature-label {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+
+    .label-free {
+      background: #D1FAE5;
+      color: #065F46;
+    }
+
+    .label-pro {
+      background: #FEF3C7;
+      color: #92400E;
+    }
+
+    /* Use Cases */
+    .use-cases {
+      padding: 80px 0;
+      background: var(--light-gray);
+    }
+
+    .use-case {
+      background: var(--white);
+      padding: 40px;
+      border-radius: 16px;
+      margin-bottom: 30px;
+      border-left: 4px solid var(--primary);
+    }
+
+    .use-case h3 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .use-case-persona {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* Pricing Section */
+    .pricing {
+      padding: 80px 0;
+      background: var(--white);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .pricing-card {
+      background: var(--white);
+      border: 2px solid var(--light-gray);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .pricing-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 20px 60px rgba(79, 70, 229, 0.15);
+      transform: scale(1.05);
+    }
+
+    .pricing-card.featured {
+      border-color: var(--primary);
+      border-width: 3px;
+      transform: scale(1.05);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: -15px;
+      right: 20px;
+      background: var(--accent);
+      color: var(--white);
+      padding: 6px 20px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .pricing-card h3 {
+      font-size: 28px;
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+
+    .price {
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--primary);
+      margin: 20px 0;
+    }
+
+    .price-period {
+      font-size: 18px;
+      color: var(--gray);
+      font-weight: 400;
+    }
+
+    .features-list {
+      list-style: none;
+      margin: 30px 0;
+      text-align: left;
+    }
+
+    .features-list li {
+      padding: 12px 0;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .features-list li::before {
+      content: "✓";
+      color: var(--secondary);
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .quota-info {
+      background: var(--light-gray);
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    /* How It Works */
+    .how-it-works {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: var(--white);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-top: 60px;
+    }
+
+    .step {
+      text-align: center;
+    }
+
+    .step-number {
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 700;
+      margin: 0 auto 20px;
+      backdrop-filter: blur(10px);
+    }
+
+    .step h3 {
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    /* FAQ Section */
+    .faq {
+      padding: 80px 0;
+      background: var(--light-gray);
+    }
+
+    .faq-item {
+      background: var(--white);
+      padding: 30px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      border-left: 4px solid var(--primary);
+    }
+
+    .faq-item h3 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+
+    .faq-item p {
+      color: var(--gray);
+      line-height: 1.8;
+    }
+
+    /* CTA Section */
+    .final-cta {
+      padding: 80px 0;
+      background: var(--dark);
+      color: var(--white);
+      text-align: center;
+    }
+
+    .final-cta h2 {
+      font-size: 42px;
+      margin-bottom: 20px;
+    }
+
+    .final-cta p {
+      font-size: 20px;
+      margin-bottom: 40px;
+      opacity: 0.9;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: var(--white);
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    footer p {
+      opacity: 0.7;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .section-title {
+        font-size: 32px;
+      }
+
+      .pricing-card.featured {
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav class="container">
+      <a href="#" class="logo">🌐 PagePal</a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <a href="https://github.com/MaorGabay222/pagepal/releases/latest" class="cta-button">Download Now</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Transform Every Webpage<br>with AI Power 🚀</h1>
+      <p>Translate, summarize, chat, detect phishing, and summarize YouTube videos - all with a single click. Your AI-powered browsing assistant.</p>
+      <div class="hero-buttons">
+        <a href="https://github.com/MaorGabay222/pagepal/releases/latest" class="cta-button">Get Started Free</a>
+        <a href="#pricing" class="cta-button secondary">View Pricing</a>
+      </div>
+      <div class="badge">✨ Free Forever • No Credit Card Required</div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="features">
+    <div class="container">
+      <h2 class="section-title">Powerful Features at Your Fingertips</h2>
+      <p class="section-subtitle">Everything you need to browse smarter and faster</p>
+      
+      <div class="features-grid">
+        <!-- Feature 1 -->
+        <div class="feature-card">
+          <div class="feature-icon">🌍</div>
+          <h3>Translation</h3>
+          <p>Translate any webpage to Hebrew or 11 other languages instantly. AI-powered context-aware translation that understands meaning, not just words.</p>
+          <span class="feature-label label-free">UNLIMITED • FREE</span>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-card">
+          <div class="feature-icon">📝</div>
+          <h3>Smart Summarization</h3>
+          <p>Long article? Get a concise 5-7 bullet point summary in seconds. Save 80% of your reading time while understanding 100% of the content.</p>
+          <span class="feature-label label-free">UNLIMITED • FREE</span>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card">
+          <div class="feature-icon">💬</div>
+          <h3>Chat with Pages</h3>
+          <p>Ask questions about any webpage. "What's the main argument?" "Explain section 3" - get AI-powered answers based on the page content.</p>
+          <span class="feature-label label-free">5 PER DAY FREE</span>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h3>Phishing Detection</h3>
+          <p>AI analyzes URLs, content, and patterns to detect phishing attempts. Get a detailed security report before entering any sensitive information.</p>
+          <span class="feature-label label-free">3 PER DAY FREE</span>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="feature-card">
+          <div class="feature-icon">🎬</div>
+          <h3>YouTube Summarization</h3>
+          <p>Auto-extract video transcripts and get summaries with timestamps. "At 05:30 he explains..." - perfect for long lectures and tutorials.</p>
+          <span class="feature-label label-free">3 PER DAY FREE</span>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="feature-card">
+          <div class="feature-icon">📄</div>
+          <h3>PDF Support</h3>
+          <p>Full PDF translation, summarization, and chat. Works with both online and local PDF files. Perfect for research papers and contracts.</p>
+          <span class="feature-label label-pro">PRO ONLY</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases Section -->
+  <section class="use-cases">
+    <div class="container">
+      <h2 class="section-title">Real-World Use Cases</h2>
+      <p class="section-subtitle">See how PagePal helps different users every day</p>
+
+      <div class="use-case">
+        <h3><span class="use-case-persona">👨‍💻 For Developers:</span></h3>
+        <p><strong>Problem:</strong> Reading English documentation takes too long and slows you down.</p>
+        <p><strong>Solution:</strong> Translate docs to your language → Get instant summaries → Ask specific questions. What took 2 hours now takes 15 minutes.</p>
+        <p><strong>Example:</strong> "I need to understand AWS Lambda pricing" → Translate AWS docs → Summarize → Ask "What's the free tier limit?"</p>
+      </div>
+
+      <div class="use-case">
+        <h3><span class="use-case-persona">👔 For Business Professionals:</span></h3>
+        <p><strong>Problem:</strong> Long reports, contracts, and competitor research eating up your time.</p>
+        <p><strong>Solution:</strong> Summarize 40-page reports in 2 minutes → Translate international documents → Check suspicious emails for phishing.</p>
+        <p><strong>Example:</strong> "Got a 30-page partnership contract in Spanish" → Translate → Summarize → Ask "What are my termination rights?"</p>
+      </div>
+
+      <div class="use-case">
+        <h3><span class="use-case-persona">🎓 For Students:</span></h3>
+        <p><strong>Problem:</strong> Research papers, textbooks, and study materials in foreign languages.</p>
+        <p><strong>Solution:</strong> Translate academic papers → Summarize chapters → Ask questions about complex topics → Summarize lecture videos.</p>
+        <p><strong>Example:</strong> "1-hour lecture on AI" → YouTube summary → "At 23:45 professor explains neural networks" → Ask "What's backpropagation?"</p>
+      </div>
+
+      <div class="use-case">
+        <h3><span class="use-case-persona">🔒 For Security-Conscious Users:</span></h3>
+        <p><strong>Problem:</strong> Phishing attempts are getting more sophisticated.</p>
+        <p><strong>Solution:</strong> Click phishing detection → AI analyzes the page → Get detailed security report before entering any data.</p>
+        <p><strong>Example:</strong> "Email says 'Your Amazon order was cancelled, click here'" → Check the link → AI: "⚠️ Fake domain, suspicious urgency, likely phishing"</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="pricing">
+    <div class="container">
+      <h2 class="section-title">Simple, Transparent Pricing</h2>
+      <p class="section-subtitle">Start free, upgrade when you need more</p>
+      
+      <div class="pricing-grid">
+        <!-- Free Plan -->
+        <div class="pricing-card">
+          <h3>Free Forever</h3>
+          <div class="price">$0<span class="price-period">/month</span></div>
+          <ul class="features-list">
+            <li>Unlimited Translation</li>
+            <li>Unlimited Summarization</li>
+            <li>5 Chat Messages per day</li>
+            <li>3 YouTube Summaries per day</li>
+            <li>3 Phishing Checks per day</li>
+            <li>4 AI Providers (Chrome Local, Gemini, ChatGPT, Perplexity)</li>
+            <li>Chrome Local AI (offline, private)</li>
+          </ul>
+          <div class="quota-info">
+            📅 Quotas reset daily at midnight
+          </div>
+          <a href="https://github.com/MaorGabay222/pagepal/releases/latest" class="cta-button">Get Started Free</a>
+        </div>
+
+        <!-- PRO Plan -->
+        <div class="pricing-card featured">
+          <div class="popular-badge">Most Popular</div>
+          <h3>PRO</h3>
+          <div class="price">$6.99<span class="price-period">/month</span></div>
+          <ul class="features-list">
+            <li>Everything in Free, plus:</li>
+            <li><strong>Unlimited</strong> Chat Messages</li>
+            <li><strong>Unlimited</strong> YouTube Summaries</li>
+            <li><strong>Unlimited</strong> Phishing Checks</li>
+            <li><strong>Full PDF Support</strong> (translate, summarize, chat)</li>
+            <li>Priority Support</li>
+            <li>All Future Updates</li>
+          </ul>
+          <div class="quota-info">
+            💎 No limits, use as much as you need
+          </div>
+          <a href="#" class="cta-button">Upgrade to PRO</a>
+        </div>
+      </div>
+
+      <p style="text-align: center; margin-top: 40px; color: var(--gray);">
+        💳 All payments processed securely via Lemon Squeezy • 14-day money-back guarantee • Cancel anytime
+      </p>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how-it-works" class="how-it-works">
+    <div class="container">
+      <h2 class="section-title">Get Started in 3 Minutes</h2>
+      <p class="section-subtitle">No coding required, no complicated setup</p>
+      
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Download</h3>
+          <p>Download PagePal from GitHub and extract the ZIP file to your computer.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Install</h3>
+          <p>Open Chrome → chrome://extensions → Enable Developer Mode → Load Unpacked → Select folder.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Setup AI</h3>
+          <p>Choose your AI provider: Chrome Local AI (free, no setup) or get a free Gemini API key in 2 minutes.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Start Using</h3>
+          <p>Navigate to any webpage → Click PagePal icon → Translate, Summarize, or Ask questions!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="faq">
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      
+      <div class="faq-item">
+        <h3>❓ Is PagePal really free?</h3>
+        <p>Yes! Translation and summarization are completely unlimited and free forever. Advanced features (chat, YouTube, phishing) have generous daily quotas: 5 chats, 3 YouTube summaries, and 3 phishing checks per day. Quotas reset at midnight.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>🔒 Do you store my data or browsing history?</h3>
+        <p>No! PagePal is 100% privacy-focused. Your API keys are stored locally on your device only. Page content is sent directly to your chosen AI provider (Google, OpenAI, etc.), never to our servers. We don't collect, store, or track any of your data.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>🤖 Which AI provider should I choose?</h3>
+        <p><strong>Chrome Local AI:</strong> Best for privacy (100% offline, no API key needed). <strong>Google Gemini:</strong> Best overall (free, fast, 1,500 requests/day). <strong>ChatGPT:</strong> Best quality (affordable, ~$0.15 per 1M tokens). <strong>Perplexity:</strong> Advanced AI (requires paid plan).</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>💰 What happens if I hit the daily free quota?</h3>
+        <p>Your quotas automatically reset at midnight every day. You'll see a countdown timer showing exactly when they reset. Translation and summarization remain unlimited even if you hit other quotas. Upgrade to PRO ($6.99/month) for unlimited everything.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>📄 Does it work on PDFs?</h3>
+        <p>Yes! PDF support (translate, summarize, chat) is available for PRO users ($6.99/month). Works with both online PDFs and local files. Perfect for research papers, contracts, and business documents.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>🎬 Does it work on YouTube?</h3>
+        <p>Yes! PagePal extracts video captions/transcripts and provides summaries with timestamps (e.g., "At 05:30 the speaker explains..."). Videos must have captions (auto-generated works too). Free tier: 3 summaries per day. PRO: unlimited.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>🌍 What languages are supported?</h3>
+        <p>PagePal supports translation to/from 12 languages: English, Hebrew, Spanish, French, German, Italian, Portuguese, Russian, Chinese, Japanese, Korean, and Arabic. The UI is primarily in Hebrew and English.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>💳 How do I upgrade to PRO?</h3>
+        <p>Click "Upgrade to PRO" in the extension → Complete payment via Lemon Squeezy (secure payment processor) → Receive license key via email → Enter key in PagePal settings → Enjoy unlimited features! 14-day money-back guarantee.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>🛡️ Is PagePal secure?</h3>
+        <p>Yes! PagePal has an A- security rating (90/100) after comprehensive security audits. Features: XSS protection, minimal Chrome permissions, local-only API key storage, browser fingerprinting for quota enforcement, and zero data collection.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>💻 Can I use it offline?</h3>
+        <p>Yes, if you use Chrome Local AI (Gemini Nano). It's 100% offline and private, no internet required. Cloud AI providers (Gemini, ChatGPT, Perplexity) require an internet connection.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta">
+    <div class="container">
+      <h2>Ready to Transform Your Browsing? 🚀</h2>
+      <p>Join thousands of users saving hours every week with AI-powered browsing</p>
+      <div class="hero-buttons">
+        <a href="https://github.com/MaorGabay222/pagepal/releases/latest" class="cta-button">Download Free Now</a>
+        <a href="#pricing" class="cta-button secondary">View Pricing</a>
+      </div>
+      <div class="badge">✨ No Credit Card • Free Forever • 5-Minute Setup</div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 PagePal. All rights reserved.</p>
+      <p style="margin-top: 10px;">Made with ❤️ for smart browsing</p>
+    </div>
+  </footer>
+</body>
+</html>
