@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>הגדרות – AI Translator</title>
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <div id="options-container">
+    <header>
+      <div class="logo">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="11" fill="#1567FE"/>
+          <path d="M8 12h8M12 8l4 4-4 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <h1>PagePal – הגדרות</h1>
+<parameter name="p">תרגום, סיכום וצ'אט עם כל עמוד</p>
+        </div>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- Subscription (Lemon Squeezy) -->
+      <section class="card" id="subscription-card">
+        <h2>💳 מנוי PRO</h2>
+        <p class="description">ניהול מנוי PRO דרך Lemon Squeezy — הזן את ה-License Key שקיבלת במייל אחרי רכישה.</p>
+        <div id="subscription-status-box" class="subscription-status-box">
+          <span id="subscription-status-text">טוען…</span>
+        </div>
+        
+        <!-- Expiry Date Display (only shown when PRO active) -->
+        <div id="expiry-date-box" class="expiry-date-box" style="display: none;">
+          <div class="expiry-date-icon">⏰</div>
+          <div class="expiry-date-content">
+            <div class="expiry-date-label">תוקף המנוי:</div>
+            <div id="expiry-date-text" class="expiry-date-value">—</div>
+          </div>
+        </div>
+        
+        <!-- Chrome Sync - Automatic Cross-Device Synchronization -->
+        <div class="sync-info-box">
+          <div class="sync-info-header">
+            <span class="sync-info-icon">🔄</span>
+            <div>
+              <strong class="sync-info-title">סנכרון אוטומטי בין מכשירים</strong>
+              <p class="sync-info-subtitle">
+                ה-License Key שלך מסתנכרן אוטומטית לכל המכשירים דרך Chrome Sync
+              </p>
+            </div>
+          </div>
+          
+          <div class="sync-info-content">
+            <div class="sync-info-section-title">
+              <strong>✅ איך זה עובד:</strong>
+            </div>
+            <ul class="sync-info-list">
+              <li>הזן את ה-License Key פעם אחת במכשיר אחד</li>
+              <li>Chrome מסנכרן אוטומטית לכל המכשירים שלך</li>
+              <li>במכשיר חדש - פשוט התקן את התוסף, זה כבר יהיה שם!</li>
+              <li>עובד רק אם אתה מחובר ל-Chrome עם חשבון Google</li>
+            </ul>
+          </div>
+          
+          <div class="sync-info-tip">
+            <strong>💡 טיפ:</strong> ודא ש-Chrome Sync מופעל בהגדרות Chrome (chrome://settings/syncSetup)
+          </div>
+        </div>
+
+        <div class="input-group" style="margin-top: 10px;">
+          <label for="license-key-input">License Key</label>
+          <div class="input-row">
+            <input
+              type="text"
+              id="license-key-input"
+              placeholder="XXXX-XXXX-XXXX-XXXX"
+              autocomplete="off"
+              spellcheck="false"
+            />
+          </div>
+        </div>
+        <div class="button-row" style="margin-top: 10px;">
+          <button type="button" id="validate-license-btn" class="primary">אמת License Key</button>
+          <button type="button" id="options-upgrade-btn" class="secondary">⬆ שדרג ל-PRO</button>
+        </div>
+      </section>
+
+      <!-- Provider Selection -->
+      <section class="card">
+        <h2>🤖 בחר ספק AI</h2>
+        <p class="description">בחר באיזה ספק להשתמש לתרגום וסיכום.</p>
+        <div class="provider-tabs provider-tabs-grid">
+          <button class="provider-tab" id="tab-local" data-provider="local">
+            <span class="provider-tab-icon">🖥️</span>
+            <span class="provider-tab-name">Chrome Local AI</span>
+            <span class="provider-tab-sub">חינם, ללא מפתח</span>
+          </button>
+          <button class="provider-tab" id="tab-gemini" data-provider="gemini">
+            <span class="provider-tab-icon">✨</span>
+            <span class="provider-tab-name">Google Gemini</span>
+            <span class="provider-tab-sub">Gemini 2.5 Flash</span>
+          </button>
+          <button class="provider-tab" id="tab-openai" data-provider="openai">
+            <span class="provider-tab-icon">🤖</span>
+            <span class="provider-tab-name">ChatGPT</span>
+            <span class="provider-tab-sub">gpt-4o-mini</span>
+          </button>
+          <button class="provider-tab" id="tab-perplexity" data-provider="perplexity">
+            <span class="provider-tab-icon">🔵</span>
+            <span class="provider-tab-name">Perplexity</span>
+            <span class="provider-tab-sub">Sonar model</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Local AI Card -->
+      <section class="card provider-card" id="card-local">
+        <h2>🖥️ Chrome Local AI (Gemini Nano)</h2>
+        <p class="description">
+          AI מובנה בדפדפן Chrome — עובד ללא אינטרנט, ללא מפתח API, עם פרטיות מלאה.
+          דורש Chrome 127+ עם הדגל <code>chrome://flags/#prompt-api-for-gemini-nano</code>.
+        </p>
+        <div id="local-ai-capability-box" class="capability-box">
+          <span id="local-ai-cap-text">בודק זמינות...</span>
+        </div>
+        <div class="button-row">
+          <button id="check-local-btn" class="secondary">בדוק זמינות</button>
+          <button onclick="navigator.clipboard.writeText('chrome://flags/#prompt-api-for-gemini-nano'); alert('הועתק! הדבק בשורת הכתובת של Chrome')" class="secondary-link">העתק Flags URL 📋</button>
+        </div>
+        <div class="info-box" style="margin-top:10px">
+          <strong>מגבלות:</strong> טקסט מוגבל ל-6,000 תווים. מודל קטן (Gemini Nano) – מתאים לשאלות קצרות וסיכומים.
+        </div>
+      </section>
+
+      <details class="advanced-details" id="advanced-byok">
+        <summary class="advanced-details-summary">🔧 הגדרות מתקדמות / מפתח API משלך (BYOK)</summary>
+        <p class="description advanced-hint">אופציונלי. המפתחות שלך — נשמרים רק במחשב שלך. אין אצלנו בשרת.</p>
+
+      <!-- Gemini Key -->
+      <section class="card provider-card" id="card-gemini">
+        <h2>🔑 מפתח API – Google Gemini</h2>
+        <p class="description">
+          ניתן לקבל מפתח API <strong>בחינם לגמרי</strong> (מכסה נדיבה מאוד!) ב-
+          <a href="https://aistudio.google.com/apikey" target="_blank">aistudio.google.com/apikey</a>.
+          <br/>המודל: <code>gemini-2.5-flash</code> – מהיר, חכם ובחינם לשימוש רגיל.
+        </p>
+        
+        <div class="gemini-guide-box">
+          <div class="gemini-guide-header">
+            <span class="gemini-guide-icon">✨</span>
+            <strong>איך להוציא API Key בחינם:</strong>
+          </div>
+          <ol class="gemini-guide-steps">
+            <li>היכנס לחשבון Google שלך</li>
+            <li>לך ל-<a href="https://aistudio.google.com/apikey" target="_blank">Google AI Studio</a></li>
+            <li>לחץ על <strong>"Get API Key"</strong> או <strong>"Create API Key"</strong></li>
+            <li>בחר פרויקט קיים או צור חדש (בחינם)</li>
+            <li>העתק את המפתח (מתחיל ב-<code>AIza...</code>)</li>
+            <li>הדבק למטה ולחץ <strong>שמור</strong></li>
+          </ol>
+          <div class="gemini-guide-footer">
+            <strong>💎 מה כלול בחינם:</strong>
+            <span>15 בקשות/דקה • 1,500 בקשות/יום • 1M טוקנים/חודש • ללא כרטיס אשראי</span>
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="gemini-key-input">מפתח API</label>
+          <div class="input-row">
+            <input
+              type="password"
+              id="gemini-key-input"
+              placeholder="AIzaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <button class="toggle-vis-btn" data-target="gemini-key-input" type="button" title="הצג/הסתר">👁️</button>
+          </div>
+        </div>
+        <div class="button-row">
+          <button id="save-gemini-btn" class="primary">שמור</button>
+          <button id="test-gemini-btn" class="secondary">בדוק חיבור</button>
+          <button id="clear-gemini-btn" class="danger">מחק מפתח</button>
+        </div>
+        <div id="status-gemini" hidden></div>
+      </section>
+
+      <!-- OpenAI Key -->
+      <section class="card provider-card" id="card-openai">
+        <h2>🔑 מפתח API – OpenAI (ChatGPT)</h2>
+        <p class="description">
+          ניתן לקבל מפתח API ב-
+          <a href="https://platform.openai.com/api-keys" target="_blank">platform.openai.com/api-keys</a>.
+          <br/>המודל: <code>gpt-4o-mini</code> – מהיר, זול ואיכותי.
+        </p>
+        <div class="input-group">
+          <label for="openai-key-input">מפתח API</label>
+          <div class="input-row">
+            <input
+              type="password"
+              id="openai-key-input"
+              placeholder="sk-proj-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <button class="toggle-vis-btn" data-target="openai-key-input" type="button" title="הצג/הסתר">👁️</button>
+          </div>
+        </div>
+        <div class="button-row">
+          <button id="save-openai-btn" class="primary">שמור</button>
+          <button id="test-openai-btn" class="secondary">בדוק חיבור</button>
+          <button id="clear-openai-btn" class="danger">מחק מפתח</button>
+        </div>
+        <div id="status-openai" hidden></div>
+      </section>
+
+      <!-- Perplexity Key -->
+      <section class="card provider-card" id="card-perplexity">
+        <h2>🔑 מפתח API – Perplexity</h2>
+        <p class="description">
+          ניתן לקבל מפתח API ב-
+          <a href="https://www.perplexity.ai/settings/api" target="_blank">perplexity.ai/settings/api</a>.
+        </p>
+        <div class="input-group">
+          <label for="perplexity-key-input">מפתח API</label>
+          <div class="input-row">
+            <input
+              type="password"
+              id="perplexity-key-input"
+              placeholder="pplx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <button class="toggle-vis-btn" data-target="perplexity-key-input" type="button" title="הצג/הסתר">👁️</button>
+          </div>
+        </div>
+        <div class="button-row">
+          <button id="save-perplexity-btn" class="primary">שמור</button>
+          <button id="test-perplexity-btn" class="secondary">בדוק חיבור</button>
+          <button id="clear-perplexity-btn" class="danger">מחק מפתח</button>
+        </div>
+        <div id="status-perplexity" hidden></div>
+      </section>
+
+      </details>
+
+      <!-- Appearance -->
+      <section class="card">
+        <h2>🎨 מראה</h2>
+        <p class="description">בחר מצב תצוגה מועדף.</p>
+        <div class="appearance-row">
+          <label class="switch-label" for="dark-mode-toggle">
+            <span>🌙 מצב לילה (Dark Mode)</span>
+            <label class="toggle-switch">
+              <input type="checkbox" id="dark-mode-toggle" />
+              <span class="toggle-slider"></span>
+            </label>
+          </label>
+        </div>
+      </section>
+
+      <!-- How to use -->
+      <section class="card">
+        <h2>📖 כיצד להשתמש</h2>
+        <ol>
+          <li>בחר ספק AI ולחץ עליו (Chrome Local AI לא מצריך מפתח!).</li>
+          <li>אם בחרת ספק ענן — הזן מפתח API ולחץ <strong>שמור</strong>.</li>
+          <li>נווט לכל עמוד אינטרנט ולחץ על אייקון התוסף.</li>
+          <li>בחר <strong>תרגם</strong>, <strong>סכם</strong>, או <strong>שאל</strong>.</li>
+          <li>לייצוא היסטוריה לחץ 📥 במסך ההיסטוריה.</li>
+          <li>קיצור מקלדת: <kbd>Cmd+Shift+Y</kbd> (Mac) / <kbd>Ctrl+Shift+Y</kbd> (Win).</li>
+        </ol>
+      </section>
+
+      <!-- Info -->
+      <section class="card">
+        <h2>💡 מידע</h2>
+        <ul>
+          <li>המפתחות נשמרים <strong>מקומית</strong> בלבד — אין שרת ביניים.</li>
+          <li><strong>Chrome Local AI</strong> – חינמי, פרטי, ללא אינטרנט. מוגבל ל-6,000 תווים.</li>
+          <li><strong>Gemini 2.5 Flash</strong> – מהיר מאוד, חינמי עם מכסה נדיבה.</li>
+          <li><strong>ChatGPT (gpt-4o-mini)</strong> – איכות גבוהה, מחיר נמוך.</li>
+          <li><strong>Perplexity Sonar</strong> – איכות גבוהה, דורש תשלום אחרי מכסה.</li>
+          <li>עמודים ארוכים נחתכים ל-48,000 תווים (6,000 ב-Local AI).</li>
+          <li>תוצאות נשמרות במטמון ל-24 שעות לכל עמוד.</li>
+        </ul>
+      </section>
+
+    </main>
+
+    <!-- Debug Section -->
+    <main style="padding: 20px 0;">
+      <section class="card">
+        <h2>🛠️ כלי Debug</h2>
+        <p class="description">כלים לבדיקה ופיתוח</p>
+        <div class="button-row">
+          <button id="reset-quotas-btn" class="secondary">🔄 אפס מכסות חינמיות</button>
+        </div>
+        <div class="info-box" style="margin-top:10px">
+          <strong>שים לב:</strong> זה יאפס את כל המכסות החינמיות (יוטיוב, פישינג, צ'אט) ל-3/3 ו-5/5.
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>גרסה 3.1.0 | PagePal</span>
+    </footer>
+  </div>
+  <script src="options.js"></script>
+</body>
+</html>

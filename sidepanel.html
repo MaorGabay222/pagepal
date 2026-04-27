@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Translator</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body class="is-sidepanel">
+  <div id="popup-container">
+
+    <!-- ── Onboarding (first run) ── -->
+    <div id="onboarding-screen" hidden>
+      <div id="onboarding-body">
+        <div id="onboarding-logo">
+          <svg width="56" height="56" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="17" r="13" fill="rgba(21,103,254,0.18)"/>
+            <circle cx="16" cy="16" r="13" fill="#1567FE"/>
+            <path d="M9.5 22 L13.5 10 L16 10 L19.5 22" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <line x1="11" y1="18" x2="18" y2="18" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="22" y1="10" x2="22" y2="22" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <line x1="20" y1="10" x2="24" y2="10" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="20" y1="22" x2="24" y2="22" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <div id="onboarding-steps">
+          <div class="ob-step active" id="ob-step-1">
+            <h2>ברוכים הבאים ל-PagePal!</h2>
+            <p>תרגמו, סכמו ושוחחו עם כל דף אינטרנט — בעברית, בשניות.</p>
+            <div class="ob-features">
+              <div class="ob-feat"><span>🇮🇱</span><span>תרגום מלא לעברית</span></div>
+              <div class="ob-feat"><span>📝</span><span>סיכום חכם</span></div>
+              <div class="ob-feat"><span>💬</span><span>שיחה עם ה-AI על הדף</span></div>
+              <div class="ob-feat"><span>⚡</span><span>מטמון חכם – ללא קריאות כפולות</span></div>
+            </div>
+          </div>
+          <div class="ob-step" id="ob-step-2">
+            <h2>בחר ספק AI</h2>
+            <p>בחר עם איזה ספק תרצה לעבוד:</p>
+            <div class="ob-providers">
+              <button class="ob-provider-btn active" data-provider="perplexity">
+                <span class="ob-prov-icon">🔵</span>
+                <strong>Perplexity Sonar</strong>
+                <small>איכות גבוהה, דורש תשלום</small>
+              </button>
+              <button class="ob-provider-btn" data-provider="gemini">
+                <span class="ob-prov-icon">✨</span>
+                <strong>Google Gemini</strong>
+                <small>מהיר וחינמי</small>
+              </button>
+            </div>
+          </div>
+          <div class="ob-step" id="ob-step-3">
+            <h2>הזן מפתח API</h2>
+            <p id="ob-key-hint">הזן מפתח <strong>Perplexity</strong> כדי להתחיל:</p>
+            <input type="password" id="ob-key-input" placeholder="הדבק את המפתח כאן..." autocomplete="off" spellcheck="false"/>
+            <small class="ob-key-link">
+              <a href="https://www.perplexity.ai/settings/api" target="_blank" id="ob-key-link-perplexity">קבל מפתח Perplexity</a>
+              <a href="https://aistudio.google.com/apikey" target="_blank" id="ob-key-link-gemini" hidden>קבל מפתח Gemini</a>
+            </small>
+            <p class="ob-skip-note">ניתן לדלג ולהגדיר מאוחר יותר בהגדרות ⚙️</p>
+          </div>
+        </div>
+
+        <div id="onboarding-dots">
+          <span class="ob-dot active"></span>
+          <span class="ob-dot"></span>
+          <span class="ob-dot"></span>
+        </div>
+        <div id="onboarding-footer">
+          <button id="ob-back-btn" hidden>← חזור</button>
+          <button id="ob-next-btn" class="primary">הבא →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── מסך ראשי ── -->
+    <div id="home-screen" hidden>
+      <header>
+        <div class="logo">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="17" r="13" fill="rgba(21,103,254,0.18)"/>
+            <circle cx="16" cy="16" r="13" fill="#1567FE"/>
+            <path d="M9.5 22 L13.5 10 L16 10 L19.5 22" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <line x1="11" y1="18" x2="18" y2="18" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="22" y1="10" x2="22" y2="22" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <line x1="20" y1="10" x2="24" y2="10" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="20" y1="22" x2="24" y2="22" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <span>PagePal <span class="sidepanel-tag">📌</span></span>
+          <span id="pro-badge" class="pro-badge" hidden>PRO</span>
+        </div>
+        <div class="header-btns">
+          <button type="button" id="header-upgrade-btn" class="header-upgrade-btn" title="שדרג ל-PRO" hidden>⬆ PRO</button>
+          <button id="dark-mode-btn" title="מצב לילה">🌙</button>
+          <button id="stats-btn" title="סטטיסטיקות">📊</button>
+          <button id="history-btn" title="היסטוריה">📚</button>
+          <button id="settings-btn" title="הגדרות">⚙️</button>
+        </div>
+      </header>
+
+      <div id="no-key-warning" hidden>
+        <p>⚠️ לא הוגדר API key.</p>
+        <button id="go-settings-btn">פתח הגדרות</button>
+      </div>
+
+      <div id="local-ai-info" hidden>
+        <span id="local-ai-status-text" class="local-ai-status-text"></span>
+      </div>
+
+      <div id="provider-bar">
+        <span id="provider-badge"></span>
+        <div class="provider-bar-btns">
+          <button id="undo-provider-btn" title="חזור לספק הקודם" hidden>↩ בטל</button>
+          <button id="switch-provider-btn">החלף</button>
+        </div>
+      </div>
+
+      <main id="main-actions">
+        <p class="page-title">עמוד נוכחי:</p>
+        <p class="page-url" id="current-url"></p>
+
+        <div id="pdf-badge" hidden>
+          <span>📄 קובץ PDF זוהה</span>
+          <span id="pdf-lock" class="pdf-lock" hidden title="PDF דורש PRO">🔒 שדרג ל-PRO</span>
+        </div>
+
+        <!-- Language Selector -->
+        <div id="language-selector">
+          <label for="target-lang">🌐 תרגם ל:</label>
+          <select id="target-lang" class="lang-select">
+            <!-- Options will be populated by JS -->
+          </select>
+        </div>
+
+        <!-- Custom Prompt Template -->
+        <div id="prompt-template-selector" hidden>
+          <label for="prompt-template">👔 תפקיד מקצועי:</label>
+          <select id="prompt-template" class="lang-select">
+            <option value="default">ברירת מחדל</option>
+            <option value="cyber">🔐 חוקר סייבר</option>
+            <option value="finance">💰 חוקר שוק ההון</option>
+            <option value="realestate">🏠 איש נדלן</option>
+            <option value="legal">⚖️ עורך דין</option>
+            <option value="medical">🏥 רופא</option>
+            <option value="tech">💻 מהנדס תוכנה</option>
+            <option value="marketing">📢 איש שיווק</option>
+          </select>
+          <button type="button" id="toggle-template-btn" class="toggle-template-btn" title="הפעל/כבה תפקיד מקצועי">
+            <span id="template-toggle-icon">✓</span>
+          </button>
+        </div>
+
+        <div class="actions">
+          <button class="action-btn" id="translate-btn">
+            <span class="action-icon">🌍</span>
+            <div class="action-text">
+              <strong id="translate-btn-text">תרגם</strong>
+              <small>תרגום מלא של תוכן העמוד</small>
+            </div>
+          </button>
+
+          <button class="action-btn" id="summarize-btn">
+            <span class="action-icon">📝</span>
+            <div class="action-text">
+              <strong id="summarize-btn-text">סכם</strong>
+              <small>סיכום קצר של הנקודות העיקריות</small>
+            </div>
+          </button>
+
+          <button class="action-btn" id="ask-page-btn">
+            <span class="action-icon">💬</span>
+            <div class="action-text">
+              <strong>שאל על העמוד</strong>
+              <small>שיחה חופשית עם ה-AI על התוכן</small>
+            </div>
+          </button>
+
+          <button class="action-btn" id="phishing-check-btn">
+            <span class="action-icon">🛡️</span>
+            <div class="action-text">
+              <strong>בדוק פישינג</strong>
+              <small>סרוק את הדף לאיתור סימני פישינג</small>
+            </div>
+          </button>
+
+          <button class="action-btn" id="youtube-summary-btn" hidden>
+            <span class="action-icon">🎬</span>
+            <div class="action-text">
+              <strong>סכם סרטון YouTube</strong>
+              <small>סיכום אוטומטי עם נקודות עיקריות</small>
+            </div>
+          </button>
+            <span class="action-icon">🎬</span>
+            <div class="action-text">
+              <strong>סכם סרטון YouTube</strong>
+              <small>סיכום מפורט של הסרטון עם timestamps</small>
+            </div>
+          </button>
+        </div>
+      </main>
+
+      <footer>
+        <span id="footer-label">PagePal · גרסה 3.1.0</span>
+      </footer>
+    </div>
+
+    <!-- ── מסך תוצאה ── -->
+    <div id="result-screen" hidden>
+      <div id="result-header">
+        <button id="back-btn" title="חזור">← חזור</button>
+        <span id="result-title"></span>
+        <div class="result-header-btns">
+          <button id="rescan-btn" title="סריקה חוזרת" hidden>🔄</button>
+          <button id="ask-result-btn" title="שאל שאלה" hidden>💬</button>
+          <button id="copy-btn" title="העתק">📋</button>
+        </div>
+      </div>
+      <div id="result-body">
+        <div id="result-skeleton">
+          <div class="skel-line" style="width:92%"></div>
+          <div class="skel-line" style="width:78%"></div>
+          <div class="skel-line" style="width:85%"></div>
+          <div class="skel-line short"></div>
+          <div class="skel-line" style="width:88%"></div>
+          <div class="skel-line" style="width:70%"></div>
+          <div class="skel-line" style="width:80%"></div>
+          <div class="skel-line short"></div>
+          <div class="skel-line" style="width:75%"></div>
+        </div>
+        <div id="result-content" dir="rtl" lang="he" hidden></div>
+        <div id="result-error" hidden></div>
+      </div>
+    </div>
+
+    <!-- ── מסך היסטוריה ── -->
+    <div id="history-screen" hidden>
+      <div id="history-header">
+        <button id="history-back-btn" title="חזור">← חזור</button>
+        <span>📚 היסטוריה</span>
+        <div class="history-header-btns">
+          <button id="clear-history-btn" title="מחק הכל">🗑️</button>
+        </div>
+      </div>
+      <div id="history-search-bar">
+        <input type="text" id="history-search" placeholder="🔍 חפש בהיסטוריה..." autocomplete="off" dir="rtl"/>
+      </div>
+      <div id="history-body">
+        <div id="history-empty" hidden>
+          <p>אין היסטוריה עדיין.</p>
+          <small>תרגומים וסיכומים יישמרו כאן אוטומטית.</small>
+        </div>
+        <div id="history-no-results" hidden><p>לא נמצאו תוצאות לחיפוש.</p></div>
+        <ul id="history-list"></ul>
+      </div>
+    </div>
+
+    <!-- ── מסך שיחה ── -->
+    <div id="chat-screen" hidden>
+      <div id="chat-header">
+        <button id="chat-back-btn" title="חזור">← חזור</button>
+        <span id="chat-title">💬 שיחה עם AI</span>
+        <button id="chat-clear-btn" title="נקה שיחה">🔄</button>
+      </div>
+      <div id="chat-context-bar">
+        <span id="chat-context-label"></span>
+      </div>
+      <div id="chat-messages"></div>
+      <div id="chat-input-area">
+        <div id="chat-quota-wrap" class="chat-quota-wrap" hidden>
+          <span id="chat-quota-bar" class="chat-quota-bar"></span>
+          <button type="button" id="chat-upgrade-btn" class="chat-upgrade-btn" title="שדרג">שדרג</button>
+        </div>
+        <div class="chat-input-row">
+          <input type="text" id="chat-input" placeholder="שאל שאלה על התוכן..." autocomplete="off"/>
+          <button id="chat-send-btn" title="שלח">→</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── מסך סטטיסטיקות ── -->
+    <div id="stats-screen" hidden>
+      <div id="stats-header">
+        <button id="stats-back-btn" title="חזור">← חזור</button>
+        <span>📊 סטטיסטיקות</span>
+        <button id="reset-stats-btn" title="אפס">🔄</button>
+      </div>
+      <div id="stats-body">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">🇮🇱</div>
+            <div class="stat-value" id="stat-translates">0</div>
+            <div class="stat-label">תרגומים</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📝</div>
+            <div class="stat-value" id="stat-summarizes">0</div>
+            <div class="stat-label">סיכומים</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">💬</div>
+            <div class="stat-value" id="stat-chats">0</div>
+            <div class="stat-label">שיחות</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">⚡</div>
+            <div class="stat-value" id="stat-cache">0</div>
+            <div class="stat-label">נחסכו ממטמון</div>
+          </div>
+        </div>
+        <div class="stats-total">
+          <span>סה״כ פעולות: </span>
+          <strong id="stat-total">0</strong>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
