@@ -249,7 +249,7 @@ Summary:
 - **Phishing Detection:** 3 per day
 - **Quota Reset:** Daily at midnight 🕛
 
-### 🚀 PRO Tier ($6.99/month)
+### 🚀 PRO Tier 
 
 Everything in Free Tier, plus:
 - **Unlimited chat messages**
@@ -259,13 +259,12 @@ Everything in Free Tier, plus:
 - **Priority support**
 - **All future updates**
 
-[**Upgrade to PRO →**](https://lemonsqueezy.com)
 
 ---
 
 ## 🔒 Privacy & Security
 
-### 🛡️ Security Rating: A- (90/100)
+### 🛡️ Security Rating: A
 
 PagePal has undergone comprehensive security audits and follows industry best practices.
 
@@ -310,15 +309,7 @@ Pin PagePal to Chrome's side panel for persistent access:
 2. Right-click → **"Pin to Side Panel"**
 3. Access PagePal without opening popup
 
-### Reset Quotas (for testing)
 
-If you're testing the extension:
-1. Open PagePal → Settings (⚙️)
-2. Scroll to **"🛠️ כלי Debug"** (Debug Tools)
-3. Click **"איפוס מכסות"** (Reset Quotas)
-4. All quotas reset to maximum
-
-**Note:** This is for testing purposes only. Daily quotas reset automatically at midnight.
 
 ---
 
